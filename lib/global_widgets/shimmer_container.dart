@@ -1,11 +1,10 @@
-
 import 'package:flutter/material.dart';
 
 class ShimmerContainer extends StatelessWidget {
   final double width;
   final double height;
 
-  const ShimmerContainer({this.width, this.height});
+  const ShimmerContainer({required this.width, required this.height});
 
   @override
   Widget build(BuildContext context) {

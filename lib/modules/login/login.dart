@@ -20,13 +20,13 @@ class LoginPage extends GetView<LoginController> {
               padding: const EdgeInsets.all(16.0),
               child: TextFormField(
                 keyboardType: TextInputType.emailAddress,
-                onSaved: (value) => controller.email.value = value,
+                onSaved: (value) => controller.email.value = value!,
                 decoration: InputDecoration(labelText: 'Email'),
                 enableSuggestions: true,
                 maxLength: 32,
                 style: TextStyle(fontSize: 20),
                 validator: (value) {
-                  if (!EmailValidator.validate(value)) {
+                  if (!EmailValidator.validate(value!)) {
                     return 'Please enter a valid email address';
                   } else
                     return null;
@@ -37,14 +37,14 @@ class LoginPage extends GetView<LoginController> {
               padding: const EdgeInsets.all(16.0),
               child: TextFormField(
                   keyboardType: TextInputType.text,
-                  onSaved: (value) => controller.password.value = value,
+                  onSaved: (value) => controller.password.value = value!,
                   decoration: InputDecoration(labelText: 'Password'),
                   enableSuggestions: true,
                   obscureText: true,
                   maxLength: 20,
                   style: TextStyle(fontSize: 20),
                   validator: (value) {
-                    if (value.isEmpty) {
+                    if (value!.isEmpty) {
                       return 'Please enter your password';
                     } else if (value.length < 5) {
                       return 'Password cannot be less than 5 characters';
@@ -54,7 +54,7 @@ class LoginPage extends GetView<LoginController> {
             ),
             ElevatedButton(
               onPressed: () async {
-                final FormState form = kFormKey.currentState;
+                final FormState form = kFormKey.currentState!;
                 form.validate() ? form.save() : print('error logging in');
                 if (form.validate()) {
                   await controller.login();

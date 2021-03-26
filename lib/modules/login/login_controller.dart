@@ -15,7 +15,7 @@ class LoginController extends GetxController {
     var loginResult = await apiClient.login(email.value, password.value);
     if (loginResult) {
       Get.back();
-      Get.offNamed(Routes.BLOGSLIST);
+      Get.offAllNamed(Routes.BLOGSLIST);
     } else {
       Get.snackbar("Error", "Error in login",
           snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red);

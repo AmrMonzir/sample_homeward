@@ -12,10 +12,10 @@ class Blog {
         this.imageUrl,
     });
 
-    String id;
-    DateTime createdAt;
-    String title;
-    String imageUrl;
+    String? id;
+    DateTime? createdAt;
+    String? title;
+    String? imageUrl;
 
     factory Blog.fromJson(Map<String, dynamic> json) => Blog(
         id: json["id"],
@@ -26,7 +26,7 @@ class Blog {
 
     Map<String, dynamic> toJson() => {
         "id": id,
-        "createdAt": createdAt.toIso8601String(),
+        "createdAt": createdAt!.toIso8601String(),
         "title": title,
         "imageUrl": imageUrl,
     };

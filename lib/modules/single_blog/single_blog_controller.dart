@@ -1,14 +1,12 @@
 import 'package:get/get.dart';
-import 'package:meta/meta.dart';
 import 'package:sample_homeward/data/model/blog.dart';
 import 'package:sample_homeward/data/repository/blog_repo.dart';
 
 class SingleBlogController extends GetxController {
   final BlogsRepository repository;
-  SingleBlogController({@required this.repository})
-      : assert(repository != null);
+  SingleBlogController({required this.repository});
 
-  Blog blog;
+  Blog? blog;
   var isDoneLoading = false.obs;
 
   Future<void> getBlog(id) async {

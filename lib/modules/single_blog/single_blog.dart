@@ -8,7 +8,7 @@ import 'package:shimmer/shimmer.dart';
 class SingleBlogPage extends GetView<SingleBlogController> {
   final String id;
 
-  const SingleBlogPage({@required this.id});
+  const SingleBlogPage({required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -23,21 +23,27 @@ class SingleBlogPage extends GetView<SingleBlogController> {
                     children: [
                       InteractiveViewer(
                         child: CachedNetworkImage(
-                          imageUrl: controller.blog.imageUrl,
+                          imageUrl: controller.blog!.imageUrl!,
                           errorWidget: (context, url, error) =>
                               Icon(Icons.error),
                           placeholder: (context, url) => Shimmer.fromColors(
                             child: ShimmerContainer(height: 250, width: 250),
-                            baseColor: Colors.grey[300],
-                            highlightColor: Colors.grey[100],
+                            baseColor: Colors.grey[300]!,
+                            highlightColor: Colors.grey[100]!,
                           ),
                         ),
                       ),
                       SizedBox(height: 16),
-                      Text("${controller.blog.title}",
-                          style: TextStyle(fontSize: 20)),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Text("${controller.blog!.title}",
+                            style: TextStyle(fontSize: 20)),
+                      ),
                       SizedBox(height: 16),
-                      Text("${controller.blog.createdAt.toString()}"),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Text("${controller.blog!.createdAt.toString()}"),
+                      ),
                     ],
                   )
                 : Center(child: CircularProgressIndicator());

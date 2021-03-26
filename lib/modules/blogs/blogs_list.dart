@@ -10,15 +10,15 @@ class BlogsListPage extends GetView<BlogsController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text('BlogsListPage'), automaticallyImplyLeading: false),
+          title: Text('Blogs List Page'), automaticallyImplyLeading: false),
       body: Obx(
         () => controller.blogList.length < 1
             ? Shimmer.fromColors(
                 child: ListView.builder(
                   itemCount: 10,
                   itemBuilder: (context, index) => Shimmer.fromColors(
-                    baseColor: Colors.grey[300],
-                    highlightColor: Colors.grey[100],
+                    baseColor: Colors.grey[300]!,
+                    highlightColor: Colors.grey[100]!,
                     child: ListTile(
                       leading: ShimmerContainer(height: 50, width: 50),
                       title: ShimmerContainer(height: 20, width: 150),
@@ -26,8 +26,8 @@ class BlogsListPage extends GetView<BlogsController> {
                     ),
                   ),
                 ),
-                baseColor: Colors.grey[300],
-                highlightColor: Colors.grey[100],
+                baseColor: Colors.grey[300]!,
+                highlightColor: Colors.grey[100]!,
               )
             : ListView.builder(
                 itemCount: controller.blogList.length,
@@ -35,15 +35,15 @@ class BlogsListPage extends GetView<BlogsController> {
                   var blog = controller.blogList[index];
                   return ListTile(
                     leading: CachedNetworkImage(
-                      imageUrl: blog.imageUrl,
+                      imageUrl: blog.imageUrl!,
                       errorWidget: (context, url, error) => Icon(Icons.error),
                       placeholder: (context, url) => Shimmer.fromColors(
                         child: ShimmerContainer(height: 50, width: 50),
-                        baseColor: Colors.grey[300],
-                        highlightColor: Colors.grey[100],
+                        baseColor: Colors.grey[300]!,
+                        highlightColor: Colors.grey[100]!,
                       ),
                     ),
-                    title: Text(blog.title),
+                    title: Text(blog.title!),
                     subtitle: Text(blog.createdAt.toString()),
                     onTap: () => controller.onBlogClicked(blog),
                   );

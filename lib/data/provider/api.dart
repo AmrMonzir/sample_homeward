@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:get/get.dart';
-import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 import 'package:sample_homeward/data/model/blog.dart';
 import 'package:sample_homeward/data/services/secure_storage.dart';
@@ -10,9 +9,9 @@ const baseUrl = 'https://60585b2ec3f49200173adcec.mockapi.io/api/v1/';
 class BlogsApiClient extends GetConnect {
   final http.Client client;
 
-  BlogsApiClient({@required this.client});
+  BlogsApiClient({required this.client});
 
-  Future<List<Blog>> getAll() async {
+  Future<List<Blog>?> getAll() async {
     var token = await Get.find<SecureStorageController>().getToken();
     try {
       var uri = Uri.parse(baseUrl + "blogs");
@@ -34,7 +33,7 @@ class BlogsApiClient extends GetConnect {
     }
   }
 
-  Future<Blog> getId(id) async {
+  Future<Blog?> getId(id) async {
     var token = await Get.find<SecureStorageController>().getToken();
     try {
       var uri = Uri.parse(baseUrl + "blogs/$id");
