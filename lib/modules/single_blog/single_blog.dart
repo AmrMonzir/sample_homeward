@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:sample_homeward/global_widgets/shimmer_container.dart';
 import 'package:sample_homeward/modules/single_blog/single_blog_controller.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:sample_homeward/utils/constants.dart';
 
 class SingleBlogPage extends GetView<SingleBlogController> {
   final String id;
@@ -28,8 +29,8 @@ class SingleBlogPage extends GetView<SingleBlogController> {
                               Icon(Icons.error),
                           placeholder: (context, url) => Shimmer.fromColors(
                             child: ShimmerContainer(height: 250, width: 250),
-                            baseColor: Colors.grey[300]!,
-                            highlightColor: Colors.grey[100]!,
+                            baseColor: kBaseShimmerColor,
+                            highlightColor: kHighlightShimmerColor,
                           ),
                         ),
                       ),

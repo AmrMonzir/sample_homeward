@@ -12,7 +12,7 @@ class BlogsApiClient extends GetConnect {
   BlogsApiClient({required this.client});
 
   Future<List<Blog>?> getAll() async {
-    var token = await Get.find<SecureStorageController>().getToken();
+    String token = await Get.find<SecureStorageController>().getToken();
     try {
       var uri = Uri.parse(baseUrl + "blogs");
       var response = await client.get(uri, headers: {
@@ -20,9 +20,7 @@ class BlogsApiClient extends GetConnect {
       });
       if (response.statusCode == 200) {
         Iterable jsonResponse = json.decode(response.body);
-        List<Blog> blogList =
-            jsonResponse.map((model) => Blog.fromJson(model)).toList();
-        return blogList;
+        return jsonResponse.map((model) => Blog.fromJson(model)).toList();
       } else {
         print("response error = ${response.statusCode}");
         return null;
@@ -34,16 +32,14 @@ class BlogsApiClient extends GetConnect {
   }
 
   Future<Blog?> getId(id) async {
-    var token = await Get.find<SecureStorageController>().getToken();
+    String token = await Get.find<SecureStorageController>().getToken();
     try {
-      var uri = Uri.parse(baseUrl + "blogs/$id");
+      Uri uri = Uri.parse(baseUrl + "blogs/$id");
       var response = await client.get(uri, headers: {
         'Authorization': token,
       });
       if (response.statusCode == 200) {
-        //Map<String, dynamic> jsonResponse = json.decode(response.body);
-        Blog blog = Blog.fromJson(json.decode(response.body));
-        return blog;
+        return Blog.fromJson(json.decode(response.body));
       } else {
         print('erro -get');
         return null;
@@ -62,7 +58,6 @@ class BlogsApiClient extends GetConnect {
             "user_name": userName,
             "password": password,
           }));
-      print(response.body);
       String token = jsonDecode(response.body)["token"];
       Get.find<SecureStorageController>().setToken(token: token);
       return true;

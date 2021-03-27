@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:sample_homeward/global_widgets/shimmer_container.dart';
 import 'package:shimmer/shimmer.dart';
 import 'blogs_controller.dart';
+import 'package:sample_homeward/utils/constants.dart';
 
 class BlogsListPage extends GetView<BlogsController> {
   @override
@@ -17,8 +18,8 @@ class BlogsListPage extends GetView<BlogsController> {
                 child: ListView.builder(
                   itemCount: 10,
                   itemBuilder: (context, index) => Shimmer.fromColors(
-                    baseColor: Colors.grey[300]!,
-                    highlightColor: Colors.grey[100]!,
+                    baseColor: kBaseShimmerColor,
+                    highlightColor: kHighlightShimmerColor,
                     child: ListTile(
                       leading: ShimmerContainer(height: 50, width: 50),
                       title: ShimmerContainer(height: 20, width: 150),
@@ -26,8 +27,8 @@ class BlogsListPage extends GetView<BlogsController> {
                     ),
                   ),
                 ),
-                baseColor: Colors.grey[300]!,
-                highlightColor: Colors.grey[100]!,
+                baseColor: kBaseShimmerColor,
+                highlightColor: kHighlightShimmerColor,
               )
             : ListView.builder(
                 itemCount: controller.blogList.length,
@@ -39,8 +40,8 @@ class BlogsListPage extends GetView<BlogsController> {
                       errorWidget: (context, url, error) => Icon(Icons.error),
                       placeholder: (context, url) => Shimmer.fromColors(
                         child: ShimmerContainer(height: 50, width: 50),
-                        baseColor: Colors.grey[300]!,
-                        highlightColor: Colors.grey[100]!,
+                        baseColor: kBaseShimmerColor,
+                        highlightColor: kHighlightShimmerColor,
                       ),
                     ),
                     title: Text(blog.title!),
