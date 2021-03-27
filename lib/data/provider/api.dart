@@ -58,9 +58,13 @@ class BlogsApiClient extends GetConnect {
             "user_name": userName,
             "password": password,
           }));
-      String token = jsonDecode(response.body)["token"];
-      Get.find<SecureStorageController>().setToken(token: token);
-      return true;
+      if (response.statusCode == 200) {
+        String token = jsonDecode(response.body)["token"];
+        Get.find<SecureStorageController>().setToken(token: token);
+        return true;
+      } else {
+        return false;
+      }
     } on Exception catch (e) {
       print(e);
       return false;

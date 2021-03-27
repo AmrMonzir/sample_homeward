@@ -17,6 +17,7 @@ class LoginController extends GetxController {
       Get.back();
       Get.offAllNamed(Routes.BLOGSLIST);
     } else {
+      Get.back();
       Get.snackbar("Error", "Error in login",
           snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.red);
     }
